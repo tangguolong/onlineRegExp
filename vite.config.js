@@ -5,13 +5,16 @@ import lessToJS from 'less-vars-to-js'
 import path from 'path'
 import fs from 'fs'
 import Markdown from 'vite-plugin-md'
+import config from './config/index'
 const { plugin: mdPlugin, Mode } = require('vite-plugin-markdown')
-
+const env = process.argv[process.argv.length - 1]
+const base = config[env]
 
 const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, './config/variables.less'), 'utf8')
 )
 export default defineConfig({
+  base: base.cdn,
   plugins: [
     reactRefresh(),
     vitePluginImp({
