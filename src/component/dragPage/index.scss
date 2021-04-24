@@ -1,0 +1,201 @@
+.column {
+    overflow: hidden;
+}
+
+.column-left {
+    height: 960px;
+    background-color: #fff;
+    position: relative;
+    float: left;
+    font-size: 16px;
+
+    .header {
+        display: flex;
+
+        div {
+            flex: 1;
+            text-align: center;
+            height: 48px;
+            line-height: 48px;
+        }
+
+        .active {
+            background: #333;
+            color: #fff;
+        }
+    }
+
+    .content {
+        height: 100%;
+
+        .t {
+            width: 100%;
+
+            textarea {
+                width: 100% !important;
+                min-height: 100px;
+            }
+        }
+
+        .f {
+            margin: 16px 0 0 0;
+            display: flex;
+            border-radius: 3px 0 0 3px;
+            width: 100%;
+            border: 1px solid #dbdbdb;
+
+            &_title {
+                background: #eee;
+                color: #333;
+                line-height: 24px;
+                padding: 8px;
+                min-width: 130px;
+                text-align: center;
+            }
+
+            &_main {
+                flex: 1;
+
+                input {
+                    width: 100%;
+                    height: 40px;
+                    border: 0px;
+                }
+
+                textarea {
+                    width: 100% !important;
+                    height: 200px;
+                    border: 0px;
+                    font-size: 16px;
+                }
+
+                &_tip {
+                    padding: 8px;
+                }
+            }
+
+            &_btn {
+                cursor: pointer;
+                line-height: 24px;
+                text-align: center;
+                padding: 8px;
+                width: 100px;
+                color: #fff;
+                background: #1890ff;
+                border-color: #1890ff;
+                text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+                box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+            }
+        }
+
+        .m {
+            min-height: 60px;
+            background: #eee;
+            margin-top: 16px;
+            padding: 8px;
+        }
+
+        .m_r {
+            margin-bottom: 100px;
+        }
+    }
+}
+
+.column_right {
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    &_d {
+        input {
+            line-height: 60px;
+            text-align: center;
+        }
+
+        margin-bottom: 16px;
+    }
+
+}
+
+.resize-save {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding: 16px;
+
+}
+
+/*滚动条样式*/
+.resize-save::-webkit-scrollbar {
+    width: 0px;
+    /*height: 4px;*/
+}
+
+.resize-save::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(136, 136, 136, 0.2);
+}
+
+.resize-save::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+
+}
+
+
+.resize-bar {
+    width: 600px;
+    height: inherit;
+    resize: horizontal;
+    cursor: ew-resize;
+    opacity: 0;
+    overflow: scroll;
+}
+
+/* 拖拽线 */
+.resize-line {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-right: 2px solid #eee;
+    border-left: 1px solid #bbb;
+    pointer-events: none;
+}
+
+.resize-bar:hover~.resize-line,
+.resize-bar:active~.resize-line {
+    border-left: 1px dashed skyblue;
+}
+
+.resize-bar::-webkit-scrollbar {
+    width: 200px;
+    height: inherit;
+}
+
+/* Firefox只有下面一小块区域可以拉伸 */
+@supports (-moz-user-select: none) {
+
+    .resize-bar:hover~.resize-line,
+    .resize-bar:active~.resize-line {
+        border-left: 1px solid #bbb;
+    }
+
+    .resize-bar:hover~.resize-line::after,
+    .resize-bar:active~.resize-line::after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        bottom: 0;
+        right: -8px;
+        background: url(./resize.svg);
+        background-size: 100% 100%;
+    }
+}
